@@ -33,9 +33,9 @@ async function bootstrap() {
           //const {country_code} = await fromWhere(req.ip) ||{}
             //console.log(country_code);
             console.log(geoip.lookup(req.ip));
-            
-            const {country}=geoip.lookup(req.ip)
-            return country=="EG"? 5:0
+            const geo = geoip.lookup(req.ip);
+            const country = geo ? geo.country : "EG";
+            return country==="EG"? 5:1
         },
         //message:"no more req"
         legacyHeaders:true,
